@@ -2,6 +2,13 @@
 
 This project was created with `create-simple-express`
 
+API should allow users to:  
+See all words 
+Look up a specific word 
+Filter by type (e.g., noun, verb) 
+Search using partial matches 
+Get a random word
+
 ## Installation
 
 Install the dependencies by running:
