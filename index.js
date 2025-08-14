@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import data from './data.js';
 
 const app = express();
@@ -61,6 +61,21 @@ app.get('/starts-with/:letter', (request, response) => {
   response.json(results);
 });
 
+//SORT by length or alphabetically
+app.get('/sort', (request, response) => {
+  const { by } = request.query;
+  let sorted = [...data];
+
+  if (by === 'length') {
+    sorted.sort((a, b) => a.word.length - b.word.length);
+  } else if (by === 'alpha') {
+    sorted.sort((a, b) => a.word.localeCompare(b.word));
+  } else {
+    return response.status(400).json({ error: 'Invalid sort type' });
+  }
+
+  response.json(sorted);
+});
 
 
 app.listen(PORT, () => {
