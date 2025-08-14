@@ -31,6 +31,21 @@ app.get('/filter', (request, response) => {
   response.json(filtered);
 });
 
+//Get /search?q=ap -> partial search
+app.get('/search', (request, response) => {
+  const { query } = request.query;
+  if (!query) {
+    return response.status(400).json({ error: 'Search query is required' });
+  }
+  
+  const results = data.filter(item =>
+    item.word.toLowerCase().includes(query.toLowerCase()) 
+  );
+  response.json(results);
+});
+
+
+
 
 
 app.listen(PORT, () => {
