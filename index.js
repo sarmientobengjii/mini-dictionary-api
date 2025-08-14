@@ -50,6 +50,16 @@ app.get('/random', (request, response) => {
   response.json(randomWord);
 });
 
+/* STRETCH GOALS */
+
+//app.get() -> server receives GET request to this route; run function
+app.get('/starts-with/:letter', (request, response) => {
+  // /starts-with/:letter -> every req must start with /starts-with/
+  // :letter -> is a route param. e.g,. /starts-with/a = req.params.letter = 'a', 'b', 'c', etc.
+  const letter = request.params.letter.toLowerCase();
+  const results = data.filter(item => item.word.toLowerCase().startsWith(letter));
+  response.json(results);
+});
 
 
 
