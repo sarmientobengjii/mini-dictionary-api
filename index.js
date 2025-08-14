@@ -44,6 +44,11 @@ app.get('/search', (request, response) => {
   response.json(results);
 });
 
+//GET /random -> random word
+app.get('/random', (request, response) => {
+  const randomWord = data[Math.floor(Math.random() * data.length)];
+  response.json(randomWord);
+});
 
 
 
